@@ -1,0 +1,37 @@
+inherit python
+
+CATEGORY="Games"
+SUMMARY="Squeak Etoys"
+DESCRIPTION="Etoys is an authoring system, primarily aimed at children,
+in which a wide variety of dynamic media can be created and
+programmed/scripted, shared and collaborated. Much of the use of Etoys
+has been as a vehicle to help children learn powerful ideas,
+especially in science and mathematics."
+HOMEPAGE="http://www.sugarlabs.org/"
+SRC_URI="http://download.sugarlabs.org/sources/sucrose/glucose/${PN}/${P}.tar.gz"
+
+PKG_NAMES="etoys sugar-Etoys"
+etoys_REQUIRES="squeak"
+etoys_CONTENTS="--exclude=sugar etc/ usr/"
+sugar_Etoys_CATEGORY="Sugar"
+sugar_Etoys_SUMMARY="Sugar Desktop Etoys activity"
+sugar_Etoys_REQUIRES="etoys"
+sugar_Etoys_CONTENTS="usr/share/sugar/"
+
+DIFF_EXCLUDES="Makefile activity.info etoys"
+
+src_compile() {
+	cd ${S}
+	cygconf
+	cygmake
+}
+
+src_install() {
+	cd ${S}
+	USE_DESTDIR=no \
+	cyginstall
+	python_optimize /usr/share/sugar
+
+	newicon ${S}/activity-etoys.svg etoys.svg
+	make_desktop_entry etoys "Etoys" etoys "Education"
+}
