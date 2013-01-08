@@ -1,5 +1,8 @@
 inherit python
 
+NAME="etoys"
+VERSION=5.0.2408
+RELEASE=2
 CATEGORY="Games"
 SUMMARY="Squeak Etoys"
 DESCRIPTION="Etoys is an authoring system, primarily aimed at children,
@@ -9,6 +12,7 @@ has been as a vehicle to help children learn powerful ideas,
 especially in science and mathematics."
 HOMEPAGE="http://www.sugarlabs.org/"
 SRC_URI="http://download.sugarlabs.org/sources/sucrose/glucose/${PN}/${P}.tar.gz"
+PATCH_URI="5.0-squeak4.patch"
 
 PKG_NAMES="etoys sugar-Etoys"
 etoys_REQUIRES="squeak"

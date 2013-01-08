@@ -1,0 +1,13 @@
+With 4.10.2, squeak -help doesn't work without an image file
+
+--- origsrc/etoys-5.0.2408/etoys.in	2012-03-26 18:14:37.000000000 -0500
++++ src/etoys-5.0.2408/etoys.in	2013-01-07 20:56:31.485445600 -0600
+@@ -87,7 +87,7 @@ export DBUS_FATAL_WARNINGS=0
+ 
+ # if pulseaudio is running, use it if VM has the driver, or fall back to OSS
+ if pulseaudio --check 2>/dev/null ; then
+-    if "$VM" -help 2> /dev/null | grep -q vm-sound-pulse ; then
++    if "$VM" -help "$IMAGE" 2> /dev/null | grep -q vm-sound-pulse ; then
+         VMOPTIONS="$VMOPTIONS -vm-sound-pulse"
+     else
+         VMOPTIONS="$VMOPTIONS -vm-sound-oss"
